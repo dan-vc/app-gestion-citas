@@ -13,6 +13,13 @@ return new class extends Migration
     {
         Schema::create('patients', function (Blueprint $table) {
             $table->id();
+            $table->string('first_name');
+            $table->string('last_name');
+            $table->date('birth_date');
+            $table->string('gender');
+            $table->string('phone');
+            $table->string('address');
+            $table->string('blood_type');
             $table->timestamps();
         });
     }
@@ -25,3 +32,4 @@ return new class extends Migration
         Schema::dropIfExists('patients');
     }
 };
+    

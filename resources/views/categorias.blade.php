@@ -10,7 +10,7 @@
 
 <body>
     <main>
-        <a href="pacientes">
+        <a href="patients">
             <figure>
                 <img src="{{ asset('img/pacientes.jpeg') }}" alt="Pacientes">
                 <figcaption>Pacientes</figcaption>
