@@ -26,15 +26,15 @@
           </tr>
         </thead>
         <tbody>
-          @foreach ($diagnoses as $diagnostico)
+          @foreach ($appointments as $appointment)
           <tr>
-            <td>{{ $citas->date }}</td>
-            <td>{{ $citas->reason }}</td>
-            <td>{{ $citas->patient_id }}</td>
-            <td>{{ $citas->doctor_id }}</td>
-            <td>{{ $citas->status }}</td>
-            <td>{{ $citas->observations }}</td>
-            <td>{{ $citas->room }}</td>
+            <td>{{ $appointment->date }}</td>
+            <td>{{ $appointment->reason }}</td>
+            <td>{{ $appointment->patient_id }}</td>
+            <td>{{ $appointment->doctor_id }}</td>
+            <td>{{ $appointment->status }}</td>
+            <td>{{ $appointment->observations }}</td>
+            <td>{{ $appointment->room }}</td>
           </tr>
           @endforeach
         </tbody>
