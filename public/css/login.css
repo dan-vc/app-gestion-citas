@@ -1,3 +1,101 @@
-html{
-    background-color: aqua;
+@import url('https://fonts.googleapis.com/css2?family=Bungee&family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&display=swap');
+
+
+body {
+    margin: 0;
+    padding: 0;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: #3EB489;
 }
+
+*{
+    font-family: "DM Sans", sans-serif;
+
+}
+  
+  /* Contenedor */
+  .login-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+  }
+  
+  /* Carta */
+  .login-card {
+    display: flex;
+    width: 900px;
+    height: 550px;
+    background: #fff;
+    border-radius: 15px;
+    overflow: hidden;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+  }
+  
+  /* Imagen */
+  .login-image {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 50%;
+  }
+  
+  .login-image img {
+    width: 350px;
+  }
+  
+  /* Formulario */
+  .login-form {
+    width: 50%;
+    padding: 40px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    background: #2E7D64;
+  }
+  
+  .login-form h1 {
+    font-size: 2rem;
+    margin-bottom: 25px;
+    color: #ffffff;
+    text-align: center;
+  }
+  
+  .login-form form {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+  }
+  
+  .login-form input {
+    padding: 12px;
+    font-size: 1rem;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    outline: none;
+    transition: 0.3s;
+  }
+  
+  .login-form input:focus {
+    border-color: #2a5298;
+    box-shadow: 0 0 5px rgba(42, 82, 152, 0.5);
+  }
+  
+  .login-form button {
+    padding: 12px;
+    font-size: 1rem;
+    border: none;
+    border-radius: 8px;
+    background: #3EB489;
+    color: white;
+    cursor: pointer;
+    transition: 0.3s;
+  }
+  
+  .login-form button:hover {
+    background: #1e3c72;
+  }
+  
