@@ -10,14 +10,19 @@
 
 <body>
     <main>
-        <figure>
-            <img src="{{ asset('img/pacientes.jpeg') }}" alt="Pacientes">
-            <figcaption>Pacientes</figcaption>
-        </figure>
-        <figure>
-            <img src="{{ asset('img/medicos.jpeg') }}" alt="Medicos">
-            <figcaption>Medicos</figcaption>
-        </figure>
+        <a href="pacientes">
+            <figure>
+                <img src="{{ asset('img/pacientes.jpeg') }}" alt="Pacientes">
+                <figcaption>Pacientes</figcaption>
+            </figure>
+        </a>
+        
+        <a href="medicos">
+            <figure>
+                <img src="{{ asset('img/medicos.jpeg') }}" alt="Medicos">
+                <figcaption>Medicos</figcaption>
+            </figure>
+        </a>
         <figure>
             <img src="{{ asset('img/citas.jpeg') }}" alt="Citas">
             <figcaption>Citas</figcaption>

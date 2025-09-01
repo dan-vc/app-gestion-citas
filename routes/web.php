@@ -11,3 +11,9 @@ Route::get('categorias', function () {
     return view('categorias');
 
 });
+
+Route::get('medicos', function () {
+    return view('medicos');
+
+});
+
