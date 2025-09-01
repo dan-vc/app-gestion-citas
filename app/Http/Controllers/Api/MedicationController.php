@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
+use App\Models\Medications;
 use Illuminate\Http\Request;
 
 class MedicationController extends Controller
@@ -12,7 +13,8 @@ class MedicationController extends Controller
      */
     public function index()
     {
-        //
+        $medications = Medications::all();
+        return response()->json($medications);
     }
 
     /**
@@ -20,7 +22,8 @@ class MedicationController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $medication = Medications::create($request->all());
+        return response()->json($medication, 201);
     }
 
     /**
@@ -28,7 +31,12 @@ class MedicationController extends Controller
      */
     public function show(string $id)
     {
-        //
+        $medication = Medications::find($id);
+        if ($medication) {
+            return response()->json($medication);
+        } else {
+            return response()->json(['message' => 'Medication not found'], 404);
+        }
     }
 
     /**
@@ -36,7 +44,13 @@ class MedicationController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        $medication = Medications::find($id);
+        if ($medication) {
+            $medication->update($request->all());
+            return response()->json($medication);
+        } else {
+            return response()->json(['message' => 'Medication not found'], 404);
+        }
     }
 
     /**
@@ -44,6 +58,12 @@ class MedicationController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        $medication = Medications::find($id);
+        if ($medication) {
+            $medication->delete();
+            return response()->json(['message' => 'Medication deleted']);
+        } else {
+            return response()->json(['message' => 'Medication not found'], 404);
+        }
     }
 }

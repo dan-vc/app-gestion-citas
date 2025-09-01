@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
+use App\Models\Appointments;
 use Illuminate\Http\Request;
 
 class AppointmentController extends Controller
@@ -12,7 +13,8 @@ class AppointmentController extends Controller
      */
     public function index()
     {
-        //
+        $appointments = Appointments::all();
+        return response()->json($appointments);
     }
 
     /**
@@ -20,7 +22,8 @@ class AppointmentController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $appointment = Appointments::create($request->all());
+        return response()->json($appointment, 201);
     }
 
     /**
@@ -28,7 +31,12 @@ class AppointmentController extends Controller
      */
     public function show(string $id)
     {
-        //
+        $appointment = Appointments::find($id);
+        if ($appointment) {
+            return response()->json($appointment);
+        } else {
+            return response()->json(['message' => 'Appointment not found'], 404);
+        }
     }
 
     /**
@@ -36,7 +44,13 @@ class AppointmentController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        $appointment = Appointments::find($id);
+        if ($appointment) {
+            $appointment->update($request->all());
+            return response()->json($appointment);
+        } else {
+            return response()->json(['message' => 'Appointment not found'], 404);
+        }
     }
 
     /**
@@ -44,6 +58,12 @@ class AppointmentController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        $appointment = Appointments::find($id);
+        if ($appointment) {
+            $appointment->delete();
+            return response()->json(['message' => 'Appointment deleted']);
+        } else {
+            return response()->json(['message' => 'Appointment not found'], 404);
+        }
     }
 }

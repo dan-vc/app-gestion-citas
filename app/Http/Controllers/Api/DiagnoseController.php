@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
+use App\Models\Diagnoses;
 use Illuminate\Http\Request;
 
 class DiagnoseController extends Controller
@@ -12,7 +13,8 @@ class DiagnoseController extends Controller
      */
     public function index()
     {
-        //
+        $diagnoses = Diagnoses::all(); 
+        return response()->json($diagnoses);
     }
 
     /**
@@ -20,7 +22,8 @@ class DiagnoseController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $diagnose = Diagnoses::create($request->all());
+        return response()->json($diagnose, 201);
     }
 
     /**
@@ -28,7 +31,12 @@ class DiagnoseController extends Controller
      */
     public function show(string $id)
     {
-        //
+        $diagnose = Diagnoses::find($id);
+        if ($diagnose) {
+            return response()->json($diagnose);
+        } else {
+            return response()->json(['message' => 'Diagnose not found'], 404);
+        }
     }
 
     /**
@@ -36,7 +44,13 @@ class DiagnoseController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        $diagnose = Diagnoses::find($id);
+        if ($diagnose) {
+            $diagnose->update($request->all());
+            return response()->json($diagnose);
+        } else {
+            return response()->json(['message' => 'Diagnose not found'], 404);
+        }
     }
 
     /**
@@ -44,6 +58,12 @@ class DiagnoseController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        $diagnose = Diagnoses::find($id);
+        if ($diagnose) {
+            $diagnose->delete();
+            return response()->json(['message' => 'Diagnose deleted']);
+        } else {
+            return response()->json(['message' => 'Diagnose not found'], 404);
+        }
     }
 }

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
+use App\Models\Treatments;
 use Illuminate\Http\Request;
 
 class TreatmentController extends Controller
@@ -12,7 +13,8 @@ class TreatmentController extends Controller
      */
     public function index()
     {
-        //
+        $treatments = Treatments::all();
+        return response()->json($treatments);
     }
 
     /**
@@ -20,7 +22,8 @@ class TreatmentController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $treatment = Treatments::create($request->all());
+        return response()->json($treatment, 201);
     }
 
     /**
@@ -28,7 +31,12 @@ class TreatmentController extends Controller
      */
     public function show(string $id)
     {
-        //
+        $treatment = Treatments::find($id);
+        if ($treatment) {
+            return response()->json($treatment);
+        } else {
+            return response()->json(['message' => 'Treatment not found'], 404);
+        }
     }
 
     /**
@@ -36,7 +44,13 @@ class TreatmentController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        $treatment = Treatments::find($id);
+        if ($treatment) {
+            $treatment->update($request->all());
+            return response()->json($treatment);
+        } else {
+            return response()->json(['message' => 'Treatment not found'], 404);
+        }
     }
 
     /**
@@ -44,6 +58,12 @@ class TreatmentController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        $treatment = Treatments::find($id);
+        if($treatment){
+            Treatments::destroy($id);
+            return response()->json(['message' => 'Treatment deleted successfully']);
+        } else {
+            return response()->json(['message' => 'Treatment not found'], 404);
+        }
     }
 }

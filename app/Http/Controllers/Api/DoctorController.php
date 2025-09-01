@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
+use App\Models\Doctors;
 use Illuminate\Http\Request;
 
 class DoctorController extends Controller
@@ -12,7 +13,8 @@ class DoctorController extends Controller
      */
     public function index()
     {
-        //
+        $doctors = Doctors::all();
+        return response()->json($doctors);
     }
 
     /**
@@ -20,7 +22,8 @@ class DoctorController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $doctor = Doctors::create($request->all());
+        return response()->json($doctor, 201);
     }
 
     /**
@@ -28,7 +31,12 @@ class DoctorController extends Controller
      */
     public function show(string $id)
     {
-        //
+        $doctor = Doctors::find($id);
+        if ($doctor) {
+            return response()->json($doctor);
+        } else {
+            return response()->json(['message' => 'Doctor not found'], 404);
+        }
     }
 
     /**
@@ -36,7 +44,13 @@ class DoctorController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        $doctor = Doctors::find($id);
+        if ($doctor) {
+            $doctor->update($request->all());
+            return response()->json($doctor);
+        } else {
+            return response()->json(['message' => 'Doctor not found'], 404);
+        }
     }
 
     /**
@@ -44,6 +58,12 @@ class DoctorController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        $doctor = Doctors::find($id);
+        if ($doctor) {
+            $doctor->delete();
+            return response()->json(['message' => 'Doctor deleted']);
+        } else {
+            return response()->json(['message' => 'Doctor not found'], 404);
+        }
     }
 }
