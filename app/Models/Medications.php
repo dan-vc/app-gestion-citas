@@ -17,7 +17,7 @@ class Medications extends Model
         'duration',
         'treatment_id',
         'supplier',
-        'side_affects'
+        'side_effects'
     ];
 
     public function treatment() {

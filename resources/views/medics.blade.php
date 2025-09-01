@@ -12,7 +12,7 @@
   <div class="container">
 
     <div class="list-card">
-      <h2>Lista de Pacientes</h2>
+      <h2>Lista de Medicos</h2>
       <table>
         <thead>
           <tr>
