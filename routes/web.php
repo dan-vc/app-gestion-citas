@@ -4,6 +4,7 @@ use App\Http\Controllers\CitasController;
 use App\Http\Controllers\DiagnosticoContoller;
 use App\Http\Controllers\MedicosController;
 use App\Http\Controllers\PatientController;
+use App\Http\Controllers\TratamientoController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
@@ -29,6 +30,6 @@ Route::delete('/patients/{id}', [PatientController::class, 'destroy'])->name('pa
 
 Route::get('/medicos', [MedicosController::class, 'index'])->name('medic.index');
 Route::get('/citas', [CitasController::class, 'index'])->name('citas.index');
-Route::get('/diagnostico', [DiagnosticoContoller::class, 'index'])->name('patient.index');
-Route::get('/patients', [PatientController::class, 'index'])->name('patient.index');
+Route::get('/diagnostico', [DiagnosticoContoller::class, 'index'])->name('diagnostico.index');
+Route::get('/tratamiento', [TratamientoController::class, 'index'])->name('tratamiento.index');
 Route::get('/patients', [PatientController::class, 'index'])->name('patient.index');
