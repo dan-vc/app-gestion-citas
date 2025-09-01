@@ -13,15 +13,19 @@ class LoginController extends Controller
 
     public function login(Request $request)
     {
-        $credentials = $request->only('username', 'password');
+        try{
+            $credentials = $request->only('username', 'password');
 
         // Dummy authentication logic for demonstration purposes
         if ($credentials['username'] === 'admin' && $credentials['password'] === 'password') {
             // Authentication passed, redirect to patient list
-            return redirect()->route('patients.index');
+            return redirect()->route('categorias');
         } else {
             // Authentication failed, redirect back with error
-            return redirect()->back()->withErrors(['Invalid credentials'])->withInput();
+            return redirect()->back()->withErrors(['Credenciales invalidas'])->withInput();
+        }
+        } catch (\Exception $e) {
+            dd($e->getMessage());
         }
     }
 }

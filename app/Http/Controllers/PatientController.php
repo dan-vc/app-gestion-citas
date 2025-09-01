@@ -10,19 +10,19 @@ class PatientController extends Controller
     public function index()
     {
         $patients = Patients::all();
-        return view('patient.index')->with('patients', $patients);
+        return view('patients')->with('patients', $patients);
     }
 
-    public function create(Request $request)
+    public function store(Request $request)
     {
-        Patients::create();
+        Patients::create($request->all());
         return redirect()->route('patient.index')->with('success', 'Patient created successfully.');
     }
 
     public function show($id)
     {
         $patient = Patients::findOrFail($id);
-        return view('patient.show')->with('patient', $patient);
+        return view('patients.update')->with('patient', $patient);
     }
 
     public function update(Request $request, $id)
@@ -30,14 +30,20 @@ class PatientController extends Controller
         $patient = Patients::findOrFail($id);
 
         $validatedData = $request->validate([
-            'name' => 'sometimes|required|string|max:255',
-            'age' => 'sometimes|required|integer',
-            'email' => 'sometimes|required|email|unique:patients,email,' . $patient->id,
+            'first_name' => 'required|string|max:255',
+            'last_name'  => 'required|string|max:255',
+            'birth_date' => 'required|date',
+            'gender'     => 'required|string|max:20', // puedes ajustar valores permitidos
+            'phone'      => 'required|string|max:20',
+            'address'    => 'required|string|max:255',
+            'blood_type' => 'required|string|max:3', // ejemplo: A+, O-, AB+
         ]);
 
         $patient->update($validatedData);
-        return redirect()->route('patient.index')->with('success', 'Patient updated successfully.');
+
+        return redirect()->route('patient.index')->with('success', 'Paciente actualizado correctamente.');
     }
+
 
     public function destroy($id)
     {
