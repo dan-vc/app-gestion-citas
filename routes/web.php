@@ -33,3 +33,7 @@ Route::get('/citas', [CitasController::class, 'index'])->name('citas.index');
 Route::get('/diagnostico', [DiagnosticoContoller::class, 'index'])->name('diagnostico.index');
 Route::get('/tratamiento', [TratamientoController::class, 'index'])->name('tratamiento.index');
 Route::get('/medicamentos', [MedicamentoController::class, 'index'])->name('medicamento.index');
+
+
+Route::post('/citas', [CitasController::class, 'store'])->name('citas.store');
+
