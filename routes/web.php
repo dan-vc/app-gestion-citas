@@ -11,29 +11,33 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('categorias', function () {
     return view('categorias');
-
 })->name('categorias');
 
-Route::get('pacientes', function () {
-    return view('pacientes');
-
+Route::get('/', function () {
+    return redirect()->route('login');
 });
 
-Route::get('/', [LoginController::class, 'show']);
-Route::post('/', [LoginController::class, 'login'])->name('login');
+Route::get('/login', [LoginController::class, 'show']);
+Route::post('/login', [LoginController::class, 'login'])->name('login');
 
-Route::get('/patients', [PatientController::class, 'index'])->name('patient.index');
-Route::post('/patients', [PatientController::class, 'store'])->name('patient.store');
-Route::get('/patients/{id}', [PatientController::class, 'show'])->name('patient.show');
-Route::put('/patients/{id}', [PatientController::class, 'update'])->name('patient.update');
-Route::delete('/patients/{id}', [PatientController::class, 'destroy'])->name('patient.destroy');
-
-Route::get('/medicos', [MedicosController::class, 'index'])->name('medic.index');
-Route::get('/citas', [CitasController::class, 'index'])->name('citas.index');
-Route::get('/diagnostico', [DiagnosticoContoller::class, 'index'])->name('diagnostico.index');
-Route::get('/tratamiento', [TratamientoController::class, 'index'])->name('tratamiento.index');
-Route::get('/medicamentos', [MedicamentoController::class, 'index'])->name('medicamento.index');
+// Route::get('/patients', [PatientController::class, 'index'])->name('patients.index');
+// Route::post('/patients', [PatientController::class, 'store'])->name('patients.store');
+// Route::get('/patients/{id}', [PatientController::class, 'show'])->name('patients.show');
+// Route::put('/patients/{id}', [PatientController::class, 'update'])->name('patients.update');
+// Route::delete('/patients/{id}', [PatientController::class, 'destroy'])->name('patient.destroy');
 
 
-Route::post('/citas', [CitasController::class, 'store'])->name('citas.store');
+// Route::get('/medicos', [MedicosController::class, 'index'])->name('doctors.index');
+// Route::post('/medicos', [MedicosController::class, 'store'])->name('doctors.store');
+// Route::get('/medicos/{id}', [MedicosController::class, 'show'])->name('doctors.show');
+// Route::put('/medicos/{id}', [MedicosController::class, 'update'])->name('doctors.update');
+// Route::delete('/medicos/{id}', [MedicosController::class, 'destroy'])->name('doctors.destroy');
+// Esto se puede simplificar usando Route::resource
+// resource crea: index, create, store, show, edit, update, destroy
 
+Route::resource('patients', PatientController::class)->names('patients');
+Route::resource('medicos', MedicosController::class)->names('doctors');
+Route::resource('citas', CitasController::class)->names('appointments');
+Route::resource('diagnostico', DiagnosticoContoller::class)->names('diagnoses');
+Route::resource('tratamiento', TratamientoController::class)->names('treatments');
+Route::resource('medicamentos', MedicamentoController::class)->names('medications');

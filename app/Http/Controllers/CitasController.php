@@ -15,7 +15,7 @@ class CitasController extends Controller
         $patients = Patients::all();
         $doctors = Doctors::all();
 
-        return view('citas', compact('appointments', 'patients', 'doctors'));
+        return view('appointments.index', compact('appointments', 'patients', 'doctors'));
     }
 
     public function store(Request $request)
@@ -32,13 +32,15 @@ class CitasController extends Controller
 
         Appointments::create($validatedData);
 
-        return redirect()->route('citas.index')->with('success', 'Cita creada correctamente.');
+        return redirect()->route('appointments.index')->with('success', 'Cita creada correctamente.');
     }
 
-    public function show($id)
+    public function edit($id)
     {
         $appointment = Appointments::findOrFail($id);
-        return view('appointments.update')->with('appointment', $appointment);
+        $patients = Patients::all();
+        $doctors = Doctors::all();
+        return view('appointments.edit', compact('appointment', 'patients', 'doctors'));
     }
 
     public function update(Request $request, $id)

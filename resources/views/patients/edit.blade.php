@@ -13,7 +13,7 @@
     <!-- Formulario -->
     <div class="form-card">
       <h2>Registrar Paciente</h2>
-      <form action="{{ route('patient.update', $patient->id) }}" method="POST">
+      <form action="{{ route('patients.update', $patient->id) }}" method="POST">
         @csrf
         @method('PUT') <!-- IMPORTANTE para que sea un update -->
 

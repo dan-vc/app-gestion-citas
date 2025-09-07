@@ -1,3 +1,10 @@
+@import url('https://fonts.googleapis.com/css2?family=Bungee&family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&display=swap');
+
+* {
+  font-family: "DM Sans", sans-serif;
+
+}
+
 /* Fondo con degradado */
 body {
   margin: 0;
@@ -8,6 +15,20 @@ body {
   display: flex;
   align-items: center;
   justify-content: center;
+}
+
+.btn-regresar {
+  position: absolute;
+  top: 20px;
+  left: 20px;
+  padding: 10px 15px;
+  background-color: #2563eb;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  text-decoration: none;
+  font-size: 14px;
 }
 
 /* Contenedor principal */
@@ -49,7 +70,8 @@ label {
   color: #cbd5e1;
 }
 
-input, select {
+input,
+select {
   padding: 10px;
   border-radius: 8px;
   border: none;
@@ -69,6 +91,7 @@ input, select {
   cursor: pointer;
   transition: 0.3s;
 }
+
 .btn:hover {
   background: #1e40af;
 }
@@ -105,17 +128,21 @@ tbody tr:nth-child(even) {
   cursor: pointer;
   transition: 0.3s;
 }
+
 .btn-action.edit {
   background: #22c55e;
   color: white;
 }
+
 .btn-action.edit:hover {
   background: #15803d;
 }
+
 .btn-action.delete {
   background: #ef4444;
   color: white;
 }
+
 .btn-action.delete:hover {
   background: #991b1b;
 }

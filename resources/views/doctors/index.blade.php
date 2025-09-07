@@ -11,6 +11,8 @@
 <body>
   <div class="container">
 
+    <a href="{{ route('categorias') }}" class="btn-regresar">Regresar</a>
+
     <div class="form-card">
       <h2>Registrar Médicos</h2>
       <form action="{{ route('doctors.store') }}" method="POST">
@@ -47,7 +49,8 @@
 
         <div class="form-group">
           <label for="years_experience">Años de Experiencia</label>
-          <input type="number" id="years_experience" name="years_experience" min="0" placeholder="Ej. 5" required>
+          <input type="number" id="years_experience" name="years_experience" min="0" placeholder="Ej. 5"
+            required>
         </div>
 
         <button type="submit" class="btn">Guardar</button>
@@ -67,6 +70,7 @@
             <th>Correo</th>
             <th>N° Licencia</th>
             <th>Años de Experiencia</th>
+            <th>Acciones</th>
           </tr>
         </thead>
         <tbody>
@@ -79,6 +83,18 @@
               <td>{{ $medicos->email }}</td>
               <td>{{ $medicos->license }}</td>
               <td>{{ $medicos->years_experience }}</td>
+              <td>
+                <a href="{{ route('doctors.edit', $medicos->id) }}" class="btn-action edit">Editar</a>
+
+                <form action="{{ route('doctors.destroy', $medicos->id) }}" method="POST" style="display:inline;">
+                  @csrf
+                  @method('DELETE')
+                  <button type="submit" class="btn-action delete"
+                    onclick="return confirm('¿Seguro que quieres eliminar este paciente?')">
+                    Eliminar
+                  </button>
+                </form>
+              </td>
             </tr>
           @endforeach
         </tbody>

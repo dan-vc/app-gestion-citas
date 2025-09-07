@@ -10,19 +10,19 @@ class PatientController extends Controller
     public function index()
     {
         $patients = Patients::all();
-        return view('patients')->with('patients', $patients);
+        return view('patients.index')->with('patients', $patients);
     }
 
     public function store(Request $request)
     {
         Patients::create($request->all());
-        return redirect()->route('patient.index')->with('success', 'Patient created successfully.');
+        return redirect()->route('patients.index')->with('success', 'Patient created successfully.');
     }
 
-    public function show($id)
+    public function edit($id)
     {
         $patient = Patients::findOrFail($id);
-        return view('patients.update')->with('patient', $patient);
+        return view('patients.edit')->with('patient', $patient);
     }
 
     public function update(Request $request, $id)
@@ -41,7 +41,7 @@ class PatientController extends Controller
 
         $patient->update($validatedData);
 
-        return redirect()->route('patient.index')->with('success', 'Paciente actualizado correctamente.');
+        return redirect()->route('patients.index')->with('success', 'Paciente actualizado correctamente.');
     }
 
 
@@ -49,6 +49,6 @@ class PatientController extends Controller
     {
         $patient = Patients::findOrFail($id);
         $patient->delete();
-        return redirect()->route('patient.index')->with('success', 'Patient deleted successfully.');
+        return redirect()->route('patients.index')->with('success', 'Patient deleted successfully.');
     }
 }

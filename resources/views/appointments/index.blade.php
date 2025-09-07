@@ -11,9 +11,11 @@
 <body>
   <div class="container">
 
+    <a href="{{ route('categorias') }}" class="btn-regresar">Regresar</a>
+
     <div class="form-card">
       <h2>Registrar Cita</h2>
-      <form action="{{ route('citas.store') }}" method="POST">
+      <form action="{{ route('appointments.store') }}" method="POST">
         @csrf
         <div class="form-group">
           <label for="date">Fecha de la Cita</label>
@@ -29,7 +31,7 @@
           <label for="patient_id">Paciente</label>
           <select id="patient_id" name="patient_id" required>
             <option value="">Seleccione paciente...</option>
-            @foreach($patients as $patient)
+            @foreach ($patients as $patient)
               <option value="{{ $patient->id }}">
                 {{ $patient->first_name }} {{ $patient->last_name }}
               </option>
@@ -41,7 +43,7 @@
           <label for="doctor_id">Doctor</label>
           <select id="doctor_id" name="doctor_id" required>
             <option value="">Seleccione doctor...</option>
-            @foreach($doctors as $doctor)
+            @foreach ($doctors as $doctor)
               <option value="{{ $doctor->id }}">
                 {{ $doctor->first_name }} {{ $doctor->last_name }}
               </option>
@@ -87,7 +89,8 @@
             <th>Doctor ID</th>
             <th>Status</th>
             <th>Observation</th>
-            <th>Rom</th>
+            <th>Room</th>
+            <th>Actions</th>
           </tr>
         </thead>
         <tbody>
@@ -100,6 +103,19 @@
               <td>{{ $appointment->status }}</td>
               <td>{{ $appointment->observations }}</td>
               <td>{{ $appointment->room }}</td>
+              <td>
+                <a href="{{ route('appointments.edit', $appointment->id) }}" class="btn-action edit">Editar</a>
+
+                <form action="{{ route('appointments.destroy', $appointment->id) }}" method="POST"
+                  style="display:inline;">
+                  @csrf
+                  @method('DELETE')
+                  <button type="submit" class="btn-action delete"
+                    onclick="return confirm('¿Seguro que quieres eliminar esta cita?')">
+                    Eliminar
+                  </button>
+                </form>
+              </td>
             </tr>
           @endforeach
         </tbody>

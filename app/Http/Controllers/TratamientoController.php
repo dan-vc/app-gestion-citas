@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Diagnoses;
+use App\Models\Doctors;
 use App\Models\Treatments;
 use Illuminate\Http\Request;
 
@@ -11,7 +13,9 @@ class TratamientoController extends Controller
     public function index()
     {
         $treatments = Treatments::all();
-        return view('tratamiento')->with('treatments', $treatments);
+        $diagnoses = Diagnoses::all();
+        $doctors = Doctors::all();
+        return view('treatments.index', compact('treatments', 'diagnoses', 'doctors'));
     }
 
     // Guardar un nuevo tratamiento
@@ -33,10 +37,12 @@ class TratamientoController extends Controller
     }
 
     // Mostrar un tratamiento específico
-    public function show($id)
+    public function edit($id)
     {
         $treatment = Treatments::findOrFail($id);
-        return view('treatments.update')->with('treatment', $treatment);
+        $diagnoses = Diagnoses::all();
+        $doctors = Doctors::all();
+        return view('treatments.edit', compact('treatment', 'diagnoses', 'doctors'));
     }
 
     // Actualizar un tratamiento

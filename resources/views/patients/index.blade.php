@@ -10,10 +10,13 @@
 
 <body>
   <div class="container">
+
+    <a href="{{ route('categorias') }}" class="btn-regresar">Regresar</a>
+
     <!-- Formulario -->
     <div class="form-card">
       <h2>Registrar Paciente</h2>
-      <form action="{{ route('patient.store') }}" method="POST">
+      <form action="{{ route('patients.store') }}" method="POST">
         @csrf
         <div class="form-group">
           <label for="first_name">Nombre</label>
@@ -71,31 +74,33 @@
             <th>Genero</th>
             <th>Teléfono</th>
             <th>Direccion</th>
+            <th>Tipo de Sangre</th>
             <th>Acciones</th>
           </tr>
         </thead>
         <tbody>
           @foreach ($patients as $paciente)
-          <tr>
-            <td>{{ $paciente->first_name }}</td>
-            <td>{{ $paciente->last_name }}</td>
-            <td>{{ $paciente->birth_date }}</td>
-            <td>{{ $paciente->gender }}</td>
-            <td>{{ $paciente->phone }}</td>
-            <td>{{ $paciente->address }}</td>
+            <tr>
+              <td>{{ $paciente->first_name }}</td>
+              <td>{{ $paciente->last_name }}</td>
+              <td>{{ $paciente->birth_date }}</td>
+              <td>{{ $paciente->gender }}</td>
+              <td>{{ $paciente->phone }}</td>
+              <td>{{ $paciente->address }}</td>
+              <td>{{ $paciente->blood_type }}</td>
+              <td>
+                <a href="{{ route('patients.edit', $paciente->id) }}" class="btn-action edit">Editar</a>
 
-            <td>
-              <a href="{{ route('patient.show', $paciente->id) }}" class="btn-action edit">Editar</a>
-
-              <form action="{{ route('patient.destroy', $paciente->id) }}" method="POST" style="display:inline;">
-                @csrf
-                @method('DELETE')
-                <button type="submit" class="btn-action delete" onclick="return confirm('¿Seguro que quieres eliminar este paciente?')">
-                  Eliminar
-                </button>
-              </form>
-            </td>
-          </tr>
+                <form action="{{ route('patients.destroy', $paciente->id) }}" method="POST" style="display:inline;">
+                  @csrf
+                  @method('DELETE')
+                  <button type="submit" class="btn-action delete"
+                    onclick="return confirm('¿Seguro que quieres eliminar este paciente?')">
+                    Eliminar
+                  </button>
+                </form>
+              </td>
+            </tr>
           @endforeach
         </tbody>
       </table>

@@ -10,7 +10,7 @@ class MedicosController extends Controller
     public function index()
     {
         $doctors = Doctors::all();
-        return view('medics')->with('doctors', $doctors);
+        return view('doctors.index')->with('doctors', $doctors);
     }
 
     public function store(Request $request)
@@ -30,10 +30,10 @@ class MedicosController extends Controller
         return redirect()->route('doctors.index')->with('success', 'Médico creado correctamente.');
     }
 
-    public function show($id)
+    public function edit($id)
     {
         $doctor = Doctors::findOrFail($id);
-        return view('doctors.update')->with('doctor', $doctor);
+        return view('doctors.edit')->with('doctor', $doctor);
     }
 
     public function update(Request $request, $id)
